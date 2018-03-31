@@ -1,0 +1,36 @@
+parameters:
+  Cluster:
+    Type: String
+  DescriptionCount:
+    Type: String
+  Image:
+    Type: String
+  Role:
+    Type: String
+  TargetGroupArn:
+    Type: String
+Resources:
+  Service:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster: "!Ref Cluster"
+      DesiredCount: "!Ref DescriptionCount"
+      Role: "!Ref Role"
+      TaskDefinition: "!Ref TaskDefinition"
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: Service
+      ContainerDefinitions:
+      - Name: Neuro
+      - Image: "!Ref Image"
+      - Memory: 512
+      - essential: true
+      - PortMappings:
+        - protocol: tcp
+          containerPort: 8080
+          hostport: 8080
+        - protocol: tcp
+          containerPort: 3000
+          hostport: 3000
+
