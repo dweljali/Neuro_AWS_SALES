@@ -1,4 +1,4 @@
-FROM rhel:7.3
+FROM docker.io/sotax/rhel7.3
 
 MAINTAINER Neuro Sales team
 
