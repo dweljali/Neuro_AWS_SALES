@@ -16,13 +16,13 @@ RUN  wget -c https://nodejs.org/dist/v6.10.1/node-v6.10.1.tar.gz && \
      cd ../ && rm -rf node-v6.10.1.tar.gz && rm -rf node && node --version && npm install pm2 -g
 
 ## Copy artifacts to /opt directory of container.
-COPY MyApp/ /opt/.
+COPY ./ /opt/.
 
 ## Extract RBAUI and start application ...
-RUN     cd /opt/ && tar -xzf RBAUI.tar.gz && \
+RUN     cd /opt/sales && tar -xzf RBAUI.tar.gz && \
         rm -rf /opt/apache-tomcat-7.0.73/webapps/*
 
-RUN mv /opt/*.war /opt/apache-tomcat-7.0.73/webapps/
+RUN mv /opt/sales/*.war /opt/apache-tomcat-7.0.73/webapps/
 
 EXPOSE 3000 8080 5432
 
