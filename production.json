@@ -1,0 +1,11 @@
+{
+	"Parameters": {
+	  "Cluster": "NeuroTest",
+	  "Containername": "neuroserver",
+	  "DesiredCount":"1",
+	  "Image": {
+ 		"Fn::GetParam": ["MyAppBuild", "imagedefinitions.json", "Image"]
+	  }
+	}
+
+}

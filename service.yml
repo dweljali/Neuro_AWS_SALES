@@ -1,0 +1,41 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CloudFormation for creating ECS services..
+Parameters:
+  Cluster:
+    Type: String
+  DesiredCount:
+    Type: Number
+  Image:
+    Type: String
+  Containername:
+    Type: String
+Resources:
+  Service:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster:
+        Ref: Cluster
+      TaskDefinition:
+        Ref: TaskDefinition
+      DesiredCount:
+        Ref: DesiredCount
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: Service
+      ContainerDefinitions:
+      - Name:
+          Ref: Containername
+        Image:
+          Ref: Image
+        Memory: 512
+        Essential: true
+        PortMappings:
+        - Protocol: tcp
+          ContainerPort: 8080
+          HostPort: 8080
+        - Protocol: tcp
+          ContainerPort: 3000
+          HostPort: 3000
+
