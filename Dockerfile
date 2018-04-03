@@ -10,10 +10,9 @@ RUN wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.73/bin/apache-tomc
      mv apache-tomcat-7.0.73 /opt/.
 
 
-## Install Node js ....
-RUN  wget -c https://nodejs.org/dist/v6.10.1/node-v6.10.1.tar.gz && \
-     tar -xzvf node-v6.10.1.tar.gz && cd node-v6.10.1 && ./configure && make && make install && \
-     cd ../ && rm -rf node-v6.10.1.tar.gz && rm -rf node && node --version && npm install pm2 -g
+## Install NodeJS, npm & pm2 globally  ....
+RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash - && \
+	yum -y install nodejs && npm install pm2 -g
 
 ## Copy artifacts to /opt directory of container.
 COPY ./ /opt/.
