@@ -16,7 +16,7 @@ RUN  wget -c https://nodejs.org/dist/v6.10.1/node-v6.10.1.tar.gz && \
      cd ../ && rm -rf node-v6.10.1.tar.gz && rm -rf node && node --version && npm install pm2 -g
 
 ## Copy artifacts to /opt directory of container.
-COPY RBA/Neuro_AWS_SALES /opt/.
+COPY MyApp/ /opt/.
 
 ## Extract RBAUI and start application ...
 RUN     cd /opt/ && tar -xzf RBAUI.tar.gz && \
