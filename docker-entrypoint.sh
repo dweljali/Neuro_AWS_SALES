@@ -26,7 +26,7 @@ extracted_all(){
                   echo "Successfully extract all files "
           fi
   }
- extracted_all
+## extracted_all
 
 
 ### Start RBAUI application.
