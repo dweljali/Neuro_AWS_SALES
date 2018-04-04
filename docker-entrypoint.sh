@@ -30,7 +30,7 @@ extracted_all(){
 
 
 ### Start RBAUI application.
-cd /opt/RBAUI 
+cd /opt/sales/RBAUI 
 pm2 start server.js 
 sleep 8
 
