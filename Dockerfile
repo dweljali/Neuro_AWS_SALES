@@ -30,5 +30,5 @@ ENV PATH $PATH:/usr/java/jre1.7.0_80/bin
 
 COPY docker-entrypoint.sh /root/
 
-## Start application with starting application.....
+####### Start application with starting application.....
 #ENTRYPOINT ["./root/docker-entrypoint.sh"]
