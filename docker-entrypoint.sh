@@ -3,7 +3,7 @@ set -e
 
 ### Start apache tomcat with extracted war of API
 
-# Start Apache Tomcat server.
+# Start Apache Tomcat server......
 /opt/apache-tomcat-7.0.73/bin/startup.sh
 
 # Steps for extracting all war files.
