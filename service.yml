@@ -10,6 +10,10 @@ Parameters:
     Type: String
   Containername:
     Type: String
+  Role:
+    Type: String
+  LoadBalancerName:
+    Type: String
 Resources:
   Service:
     Type: AWS::ECS::Service
@@ -18,6 +22,14 @@ Resources:
         Ref: Cluster
       TaskDefinition:
         Ref: TaskDefinition
+      Role:
+        Ref: Role
+      LoadBalancers:
+      - ContainerName:
+          Ref: Containername
+        ContainerPort: '8080'
+        LoadBalancerName:
+          Ref: LoadBalancerName
       DesiredCount:
         Ref: DesiredCount
   TaskDefinition:
@@ -38,4 +50,3 @@ Resources:
         - Protocol: tcp
           ContainerPort: 3000
           HostPort: 3000
-
