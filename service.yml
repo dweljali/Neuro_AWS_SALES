@@ -8,37 +8,41 @@ Parameters:
     Type: Number
   Image:
     Type: String
-  Containername:
+  ContainerNameServer:
+    Type: String
+  ContainerNameNode:
     Type: String
   Role:
     Type: String
-  LoadBalancerName:
+  TargetGroupArnServer:
+    Type: String
+  TargetGroupArnNode:
     Type: String
 Resources:
-  Service:
+  ServiceServer:
     Type: AWS::ECS::Service
     Properties:
       Cluster:
         Ref: Cluster
       TaskDefinition:
-        Ref: TaskDefinition
+        Ref: TaskDefinitionServer
       Role:
         Ref: Role
       LoadBalancers:
       - ContainerName:
-          Ref: Containername
+          Ref: ContainerNameServer
         ContainerPort: '8080'
-        LoadBalancerName:
-          Ref: LoadBalancerName
+        TargetGroupArn:
+          Ref: TargetGroupArnServer
       DesiredCount:
         Ref: DesiredCount
-  TaskDefinition:
+  TaskDefinitionServer:
     Type: AWS::ECS::TaskDefinition
     Properties:
       Family: Service
       ContainerDefinitions:
       - Name:
-          Ref: Containername
+          Ref: ContainerNameServer
         Image:
           Ref: Image
         Memory: 512
@@ -47,6 +51,35 @@ Resources:
         - Protocol: tcp
           ContainerPort: 8080
           HostPort: 8080
+  ServiceNode:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster:
+        Ref: Cluster
+      TaskDefinition:
+        Ref: TaskDefinitionNode
+      Role:
+        Ref: Role
+      LoadBalancers:
+      - ContainerName:
+          Ref: ContainerNameNode
+        ContainerPort: '3000'
+        TargetGroupArn:
+          Ref: TargetGroupArnNode
+      DesiredCount:
+        Ref: DesiredCount
+  TaskDefinitionNode:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: Service
+      ContainerDefinitions:
+      - Name:
+          Ref: ContainerNameNode
+        Image:
+          Ref: Image
+        Memory: 512
+        Essential: true
+        PortMappings:
         - Protocol: tcp
           ContainerPort: 3000
           HostPort: 3000
