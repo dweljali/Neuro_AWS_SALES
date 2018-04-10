@@ -1,6 +1,6 @@
 FROM docker.io/sotax/rhel7.3
 
-MAINTAINER Neuro Sales team
+MAINTAINER Neuro Sales team India
 
 RUN yum update -y
 
