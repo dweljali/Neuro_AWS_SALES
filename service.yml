@@ -47,6 +47,10 @@ Resources:
           Ref: Image
         Memory: 512
         Essential: true
+        Command:
+        - "/bin/sh"
+        - "-c"
+        - "/opt/apache-tomcat-7.0.73/bin/startup.sh"
         PortMappings:
         - Protocol: tcp
           ContainerPort: 8080
@@ -79,7 +83,14 @@ Resources:
           Ref: Image
         Memory: 512
         Essential: true
+        Command:
+        - "/bin/sh"
+        - "-c"
+        - pm2
+        - start
+        - "/opt/RBAUI/server.js"
         PortMappings:
         - Protocol: tcp
           ContainerPort: 3000
           HostPort: 3000
+
