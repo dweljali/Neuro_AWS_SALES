@@ -6,7 +6,9 @@ Parameters:
     Type: String
   DesiredCount:
     Type: Number
-  Image:
+  ImageNode:
+    Type: String
+  ImageServer:
     Type: String
   ContainerNameServer:
     Type: String
@@ -44,7 +46,7 @@ Resources:
       - Name:
           Ref: ContainerNameServer
         Image:
-          Ref: Image
+          Ref: ImageServer
         Memory: 512
         Essential: true
         PortMappings:
@@ -76,7 +78,7 @@ Resources:
       - Name:
           Ref: ContainerNameNode
         Image:
-          Ref: Image
+          Ref: ImageNode
         Memory: 512
         Essential: true
         PortMappings:

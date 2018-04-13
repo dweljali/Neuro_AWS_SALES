@@ -7,8 +7,11 @@
 	  "TargetGroupArnNode": "arn:aws:elasticloadbalancing:us-west-1:719472067992:targetgroup/NeuroSalesNode/e5c8ef444425caee",
 	  "TargetGroupArnServer": "arn:aws:elasticloadbalancing:us-west-1:719472067992:targetgroup/NeuroSalesServer/37df59267ab39018",
 	  "Role": "ECS_role",
-	  "Image": {
+	  "ImageServer": {
  		"Fn::GetParam": ["MyAppBuild", "imagedefinitions.json", "Image"]
+	  },
+    "ImageNode": {
+ 		"Fn::GetParam": ["MyAppBuild", "imagedefinitions_node.json", "Image"]
 	  }
 	}
 

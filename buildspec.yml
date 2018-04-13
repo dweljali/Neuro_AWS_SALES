@@ -6,24 +6,30 @@ phases:
    - echo Logging in to Amazon ECR...
    - aws --version
    - REPOSITORY_URI=719472067992.dkr.ecr.us-west-1.amazonaws.com/neurosales
+   - REPOSITORY_URI_NODE=719472067992.dkr.ecr.us-west-1.amazonaws.com/neuronode
    - IMAGE_TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)"
  build:
   commands:
    - echo Build started on `date`
    - echo Building the docker images.... 
-   - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
+   - docker build -t $REPOSITORY_URI:$IMAGE_TAG -f sales_server/Dockerfile .
+   - docker build -t $REPOSITORY_URI_NODE:$IMAGE_TAG -f sales_node/Dockerfile . 
  post_build:
   commands:
    - echo Build completed on `date`
    - echo Pushing the docker images...
    - $(aws ecr get-login --no-include-email --region us-west-1)
    - docker push "$REPOSITORY_URI:$IMAGE_TAG"
+   - docker push "$REPOSITORY_URI_NODE:$IMAGE_TAG"
    - echo Writing image definitions file...
    - printf '{"Image":"%s:%s"}' $REPOSITORY_URI $IMAGE_TAG > imagedefinitions.json
+   - printf '{"Image":"%s:%s"}' $REPOSITORY_URI_NODE $IMAGE_TAG > imagedefinitions_node.json
    - cat imagedefinitions.json
+   - cat imagedefinitions_node.json
 artifacts:
  files: 
   - imagedefinitions.json
+  - imagedefinitions_node.json
   - service.yml
   - production.json
  discard-paths: yes
