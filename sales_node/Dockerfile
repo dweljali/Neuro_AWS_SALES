@@ -12,7 +12,12 @@ RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash - && \
 ## Extract RBAUI and start application ...
 RUN cd /opt && tar -xzf RBAUI.tar.gz && rm -rf RBAUI.tar.gz
 
-EXPOSE 3000 8080 5432
+#ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sbin:/opt/RBAUI
 
+
+#RUN chmod 777 /opt/RBAUI/server.js && ln -s /opt/RBAUI/server.js /usr/local/bin/server.js
+
+EXPOSE 3000 8080 5432
+WORKDIR /opt/RBAUI
 ####### Start application with starting application.....
-ENTRYPOINT pm2 start /opt/RBAUI/server.js && /bin/bash
+CMD ["npm", "start"]

@@ -20,4 +20,4 @@ ENV PATH $PATH:/usr/java/jre1.7.0_80/bin
 EXPOSE 3000 8080 5432
 
 ####### Start Neuro Server .....
-ENTRYPOINT /opt/apache-tomcat-7.0.73/bin/startup.sh && /bin/bash
+ENTRYPOINT ["/opt/apache-tomcat-7.0.73/bin/catalina.sh", "run" ]
