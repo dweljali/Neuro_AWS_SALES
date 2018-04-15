@@ -47,7 +47,8 @@ Resources:
           Ref: ContainerNameServer
         Image:
           Ref: ImageServer
-        Memory: 512
+        Memory: 2048
+        Cpu: 1024
         Essential: true
         PortMappings:
         - Protocol: tcp
