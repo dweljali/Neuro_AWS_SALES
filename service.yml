@@ -26,6 +26,9 @@ Resources:
     Properties:
       Cluster:
         Ref: Cluster
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
       TaskDefinition:
         Ref: TaskDefinitionServer
       Role:
@@ -59,6 +62,9 @@ Resources:
     Properties:
       Cluster:
         Ref: Cluster
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
       TaskDefinition:
         Ref: TaskDefinitionNode
       Role:
