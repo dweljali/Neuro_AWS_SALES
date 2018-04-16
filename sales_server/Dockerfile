@@ -1,10 +1,10 @@
 FROM docker.io/sotax/rhel7.3
 
-MAINTAINER Neuro Sales team India
+MAINTAINER Neuro Sales team
 
 RUN yum update -y
 
-## Setup apache-tomcat and start process ....
+## Setup apache-tomcat and start process .......
 RUN wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.73/bin/apache-tomcat-7.0.73.tar.gz && \
      tar -xzf apache-tomcat-7.0.73.tar.gz && \
      mv apache-tomcat-7.0.73 /opt/. && \
