@@ -53,9 +53,9 @@ Resources:
         Memory: 2048
         Cpu: 1024
         Essential: true
-        logConfiguration:
-          logDriver: awslogs
-          options:
+        LogConfiguration:
+          LogDriver: awslogs
+          Options:
             awslogs-group: awslogs-server
             awslogs-region: us-west-1
             awslogs-stream-prefix: tomcat
@@ -94,9 +94,9 @@ Resources:
           Ref: ImageNode
         Memory: 512
         Essential: true
-        logConfiguration:
-          logDriver: awslogs
-          options:
+        LogConfiguration:
+          LogDriver: awslogs
+          Options:
             awslogs-group: awslogs-Node
             awslogs-region: us-west-1
             awslogs-stream-prefix: RBAUI
