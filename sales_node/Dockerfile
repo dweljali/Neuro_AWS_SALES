@@ -4,7 +4,7 @@ MAINTAINER Neuro Sales team India
 
 COPY sales_node/RBAUI.tar.gz /opt/.
 
-## Install NodeJS, npm & pm2 globally  ....
+## Install NodeJS and npm ....
 RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash - && \
         yum -y install nodejs && npm install pm2 -g
 
