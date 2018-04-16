@@ -12,6 +12,7 @@ RUN wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.73/bin/apache-tomc
 
 COPY sales_server/*.war /opt/apache-tomcat-7.0.73/webapps/
 COPY postgresql-42.1.3.jre7.jar /opt/apache-tomcat-7.0.73/lib/
+COPY geolite2-db /opt/geolite2-db
 
 RUN touch /opt/apache-tomcat-7.0.73/bin/setenv.sh && chmod 777 /opt/apache-tomcat-7.0.73/bin/setenv.sh && \
 echo 'export JAVA_OPTS="-Dfile.encoding=UTF-8 -Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/apache-tomcat-7.0.73/logs"' > /opt/apache-tomcat-7.0.73/bin/setenv.sh
