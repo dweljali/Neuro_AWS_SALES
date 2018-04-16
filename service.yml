@@ -53,6 +53,12 @@ Resources:
         Memory: 2048
         Cpu: 1024
         Essential: true
+        logConfiguration:
+          logDriver: awslogs
+          options:
+            awslogs-group: awslogs-server
+            awslogs-region: us-west-1
+            awslogs-stream-prefix: tomcat
         PortMappings:
         - Protocol: tcp
           ContainerPort: 8080
@@ -88,6 +94,12 @@ Resources:
           Ref: ImageNode
         Memory: 512
         Essential: true
+        logConfiguration:
+          logDriver: awslogs
+          options:
+            awslogs-group: awslogs-Node
+            awslogs-region: us-west-1
+            awslogs-stream-prefix: RBAUI
         PortMappings:
         - Protocol: tcp
           ContainerPort: 3000
